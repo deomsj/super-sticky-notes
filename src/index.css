@@ -31,6 +31,7 @@ main {
 header aside {
   display: flex;
   max-width: 600px;
+  align-items: center;
 }
 
 .search,
@@ -42,6 +43,10 @@ header aside {
 
 .search {
   flex-grow: 1;
+}
+
+header select {
+  margin: 0px 12px;
 }
 
 .add-new {
@@ -80,10 +85,11 @@ header aside {
 
 .note__delete {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 0px;
+  right: 0px;
   font-size: 20px;
   color: lightgrey;
+  padding: 10px;
 }
 
 .note__delete:hover {

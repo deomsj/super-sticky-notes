@@ -9,12 +9,13 @@ class Note extends Component {
     const { onType, note } = this.props;
     onType(note.id, 'description', e.target.value);
   };
-  onDeleteClick = () => {
+  clickDelete = () => {
     const { remove, note } = this.props;
     remove(note.id);
   };
   render() {
-    const { title, description } = this.props.note;
+    const { title, description, display } = this.props.note;
+    if (!display) return null;
     return (
       <article className='note'>
         <input
@@ -30,7 +31,7 @@ class Note extends Component {
           placeholder='Description...'
           className='note__description'
         />
-        <span onClick={this.onDeleteClick} className='note__delete'>
+        <span onClick={this.clickDelete} className='note__delete'>
           X
         </span>
       </article>
