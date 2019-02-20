@@ -1,22 +1,39 @@
 import React, { Component, Fragment } from 'react';
+import { getNewNote } from './helpers';
+import Header from './Header';
 import Note from './Note';
 class App extends Component {
+  state = { notes: [getNewNote()] };
+  addNew = () => {
+    const notes = [getNewNote(), ...this.state.notes];
+    this.setState({ notes });
+  };
+  onType = (editMeId, updatedProperty, value) => {
+    const notes = this.state.notes.map(note => {
+      if (note.id !== editMeId) return note;
+      return { ...note, [updatedProperty]: value };
+    });
+    this.setState({ notes });
+  };
+  remove = deleteMeId => {
+    const notes = this.state.notes.filter(note => note.id !== deleteMeId);
+    this.setState({ notes });
+  };
   render() {
+    const { notes } = this.state;
     return (
       <Fragment>
-        <h1 className="app-header">Super Sticky Notes</h1>
-        <aside className="search-bar" >
-          <input type="text" value="Search..." />
-        </aside>
+        <Header addNew={this.addNew} />
         <main>
-          <Note />
-          <Note />
-          <Note />
-          <Note />
-          <Note />
-          <Note />
-          <Note />
-          <Note />
+          {notes.map((note, index) => (
+            <Note
+              note={note}
+              index={index}
+              key={note.id}
+              onType={this.onType}
+              remove={this.remove}
+            />
+          ))}
         </main>
       </Fragment>
     );

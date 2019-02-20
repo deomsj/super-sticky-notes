@@ -10,8 +10,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-body, h1, input, textarea {
+body,
+h1,
+input,
+textarea,
+button {
   font-family: 'Permanent Marker', cursive;
+  outline: none;
 }
 
 main {
@@ -23,10 +28,24 @@ main {
   margin: 10px 20px 0px;
 }
 
-.search-bar input {
+header aside {
+  display: flex;
+  max-width: 600px;
+}
+
+.search,
+.add-new {
   font-size: 16px;
   padding: 10px;
   margin: 16px;
+}
+
+.search {
+  flex-grow: 1;
+}
+
+.add-new {
+  border-radius: 10px;
 }
 
 .note {
@@ -39,6 +58,7 @@ main {
   border-radius: 5px;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .note__title,
@@ -50,11 +70,23 @@ main {
 
 .note__title {
   font-size: 18px;
-
+  font-weight: bold;
 }
 
 .note__description {
   flex-grow: 1;
   font-size: 14px;
+}
 
+.note__delete {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  color: lightgrey;
+}
+
+.note__delete:hover {
+  color: black;
+  cursor: pointer;
 }
